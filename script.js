@@ -1,9 +1,9 @@
-// Initialize color counter for unique IDs
+// Initialize
 let colorCounter = 3;
 
-// Get all input elements
+// Get all inputs
 const inputs = {
-    // Typography with clamp
+    // Typography (REM)
     fontBaseMin: document.getElementById('font-base-min'),
     fontBasePref: document.getElementById('font-base-pref'),
     fontBaseMax: document.getElementById('font-base-max'),
@@ -25,7 +25,7 @@ const inputs = {
     fontWeightSemibold: document.getElementById('font-weight-semibold'),
     fontWeightBold: document.getElementById('font-weight-bold'),
     
-    // Spacing
+    // Spacing (REM)
     gapXs: document.getElementById('gap-xs'),
     gapSmall: document.getElementById('gap-small'),
     gapMedium: document.getElementById('gap-medium'),
@@ -83,7 +83,7 @@ const inputs = {
     opacityHover: document.getElementById('opacity-hover'),
     opacityActive: document.getElementById('opacity-active'),
     
-    // Button & Form
+    // Button & Form (REM)
     btnHeightSm: document.getElementById('btn-height-sm'),
     btnHeightMd: document.getElementById('btn-height-md'),
     btnHeightLg: document.getElementById('btn-height-lg'),
@@ -92,80 +92,53 @@ const inputs = {
     inputPadding: document.getElementById('input-padding'),
     focusRingWidth: document.getElementById('focus-ring-width'),
     
-    // Icon Sizes
+    // Icon Sizes (REM)
     iconSm: document.getElementById('icon-sm'),
     iconMd: document.getElementById('icon-md'),
     iconLg: document.getElementById('icon-lg'),
     iconXl: document.getElementById('icon-xl')
 };
 
-// Update preview on any input change
+// Update preview on input change
 Object.values(inputs).forEach(input => {
     if (input) {
         input.addEventListener('input', updatePreview);
     }
 });
 
-// Color inputs handling
+// Color handling
 function setupColorInputs() {
-    // Primary colors
     const colorInputs = document.querySelectorAll('.color-input');
     const colorHexes = document.querySelectorAll('.color-hex');
-
-    colorInputs.forEach((input, index) => {
-        input.addEventListener('input', (e) => {
-            colorHexes[index].value = e.target.value;
-            updatePreview();
-        });
-    });
-
-    colorHexes.forEach((input, index) => {
-        input.addEventListener('input', (e) => {
-            const hex = e.target.value;
-            if (/^#[0-9A-F]{6}$/i.test(hex)) {
-                colorInputs[index].value = hex;
-                updatePreview();
-            }
-        });
-    });
-
-    // Status colors
     const statusColorInputs = document.querySelectorAll('.status-color-input');
     const statusColorHexes = document.querySelectorAll('.status-color-hex');
-
-    statusColorInputs.forEach((input, index) => {
-        input.addEventListener('input', (e) => {
-            statusColorHexes[index].value = e.target.value;
-        });
-    });
-
-    statusColorHexes.forEach((input, index) => {
-        input.addEventListener('input', (e) => {
-            const hex = e.target.value;
-            if (/^#[0-9A-F]{6}$/i.test(hex)) {
-                statusColorInputs[index].value = hex;
-            }
-        });
-    });
-
-    // Neutral colors
     const neutralColorInputs = document.querySelectorAll('.neutral-color-input');
     const neutralColorHexes = document.querySelectorAll('.neutral-color-hex');
 
-    neutralColorInputs.forEach((input, index) => {
-        input.addEventListener('input', (e) => {
-            neutralColorHexes[index].value = e.target.value;
+    function syncColors(colorInputs, colorHexes) {
+        colorInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (colorHexes[index]) {
+                    colorHexes[index].value = e.target.value;
+                    updatePreview();
+                }
+            });
         });
-    });
 
-    neutralColorHexes.forEach((input, index) => {
-        input.addEventListener('input', (e) => {
-            const hex = e.target.value;
-            if (/^#[0-9A-F]{6}$/i.test(hex)) {
-                neutralColorInputs[index].value = hex;
-            }
+        colorHexes.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                const hex = e.target.value;
+                if (/^#[0-9A-F]{6}$/i.test(hex) && colorInputs[index]) {
+                    colorInputs[index].value = hex;
+                    updatePreview();
+                }
+            });
         });
-    });
+    }
+
+    syncColors(colorInputs, colorHexes);
+    syncColors(statusColorInputs, statusColorHexes);
+    syncColors(neutralColorInputs, neutralColorHexes);
 }
 
 setupColorInputs();
@@ -193,51 +166,50 @@ function updatePreview() {
     const preview = document.querySelector('.preview-content');
     const grid = document.querySelector('.preview-grid');
     
-    // Apply typography with clamp
-    const h1Clamp = `clamp(${inputs.fontH1Min.value}px, ${inputs.fontH1Pref.value}vw, ${inputs.fontH1Max.value}px)`;
-    const h2Clamp = `clamp(${inputs.fontH2Min.value}px, ${inputs.fontH2Pref.value}vw, ${inputs.fontH2Max.value}px)`;
-    const h3Clamp = `clamp(${inputs.fontH3Min.value}px, ${inputs.fontH3Pref.value}vw, ${inputs.fontH3Max.value}px)`;
-    const baseClamp = `clamp(${inputs.fontBaseMin.value}px, ${inputs.fontBasePref.value}vw, ${inputs.fontBaseMax.value}px)`;
+    // Apply typography with clamp (REM)
+    const h1Clamp = `clamp(${inputs.fontH1Min.value}rem, ${inputs.fontH1Pref.value}vw, ${inputs.fontH1Max.value}rem)`;
+    const h2Clamp = `clamp(${inputs.fontH2Min.value}rem, ${inputs.fontH2Pref.value}vw, ${inputs.fontH2Max.value}rem)`;
+    const h3Clamp = `clamp(${inputs.fontH3Min.value}rem, ${inputs.fontH3Pref.value}vw, ${inputs.fontH3Max.value}rem)`;
+    const baseClamp = `clamp(${inputs.fontBaseMin.value}rem, ${inputs.fontBasePref.value}vw, ${inputs.fontBaseMax.value}rem)`;
     
-    preview.querySelector('h1').style.fontSize = h1Clamp;
-    preview.querySelector('h2').style.fontSize = h2Clamp;
-    preview.querySelector('h3').style.fontSize = h3Clamp;
-    preview.querySelector('p').style.fontSize = baseClamp;
-    preview.querySelector('p').style.lineHeight = inputs.lineHeight.value;
+    if (preview.querySelector('h1')) preview.querySelector('h1').style.fontSize = h1Clamp;
+    if (preview.querySelector('h2')) preview.querySelector('h2').style.fontSize = h2Clamp;
+    if (preview.querySelector('h3')) preview.querySelector('h3').style.fontSize = h3Clamp;
+    if (preview.querySelector('p')) {
+        preview.querySelector('p').style.fontSize = baseClamp;
+        preview.querySelector('p').style.lineHeight = inputs.lineHeight.value;
+    }
     
     // Apply grid
-    grid.style.gridTemplateColumns = `repeat(${inputs.gridColumns.value}, 1fr)`;
-    grid.style.gap = inputs.gridGap.value + 'px';
-    
-    // Apply border radius to grid items
-    const gridItems = grid.querySelectorAll('.grid-item');
-    gridItems.forEach(item => {
-        item.style.borderRadius = inputs.radiusMedium.value + 'px';
-        item.style.boxShadow = inputs.shadowMedium.value;
-    });
-    
-    // Apply colors to grid items
-    const colorInputs = document.querySelectorAll('.color-input');
-    gridItems.forEach((item, index) => {
-        if (colorInputs[index]) {
-            item.style.background = colorInputs[index].value;
-        }
-    });
+    if (grid) {
+        grid.style.gridTemplateColumns = `repeat(${inputs.gridColumns.value}, 1fr)`;
+        grid.style.gap = inputs.gridGap.value + 'rem';
+        
+        const gridItems = grid.querySelectorAll('.grid-item');
+        gridItems.forEach((item, index) => {
+            item.style.borderRadius = inputs.radiusMedium.value + 'px';
+            item.style.boxShadow = inputs.shadowMedium.value;
+            
+            const colorInputs = document.querySelectorAll('.color-input');
+            if (colorInputs[index]) {
+                item.style.background = colorInputs[index].value;
+            }
+        });
+    }
     
     // Apply button styles
     const previewBtn = document.querySelector('.preview-btn');
     if (previewBtn) {
-        previewBtn.style.height = inputs.btnHeightMd.value + 'px';
-        previewBtn.style.paddingLeft = inputs.btnPaddingX.value + 'px';
-        previewBtn.style.paddingRight = inputs.btnPaddingX.value + 'px';
+        previewBtn.style.height = inputs.btnHeightMd.value + 'rem';
+        previewBtn.style.paddingLeft = inputs.btnPaddingX.value + 'rem';
+        previewBtn.style.paddingRight = inputs.btnPaddingX.value + 'rem';
         previewBtn.style.borderRadius = inputs.radiusMedium.value + 'px';
         previewBtn.style.transition = `all ${inputs.durationNormal.value}ms ${inputs.easing.value}`;
     }
 }
 
-// Generate JSON data
+// Generate JSON
 function generateJSON() {
-    // Primary colors
     const colors = {};
     const colorItems = document.querySelectorAll('#colors-container .color-item');
     
@@ -248,30 +220,28 @@ function generateJSON() {
         colors[key] = hex;
     });
 
-    // Status colors
     const statusColors = {
-        success: document.getElementById('color-success').nextElementSibling.value,
-        warning: document.getElementById('color-warning').nextElementSibling.value,
-        error: document.getElementById('color-error').nextElementSibling.value,
-        info: document.getElementById('color-info').nextElementSibling.value
+        success: document.querySelector('#color-success').nextElementSibling.value,
+        warning: document.querySelector('#color-warning').nextElementSibling.value,
+        error: document.querySelector('#color-error').nextElementSibling.value,
+        info: document.querySelector('#color-info').nextElementSibling.value
     };
 
-    // Neutral colors
     const neutralColors = {
-        backgroundLight: document.getElementById('color-bg-light').nextElementSibling.value,
-        backgroundDark: document.getElementById('color-bg-dark').nextElementSibling.value,
-        textPrimary: document.getElementById('color-text-primary').nextElementSibling.value,
-        textSecondary: document.getElementById('color-text-secondary').nextElementSibling.value,
-        border: document.getElementById('color-border').nextElementSibling.value
+        backgroundLight: document.querySelector('#color-bg-light').nextElementSibling.value,
+        backgroundDark: document.querySelector('#color-bg-dark').nextElementSibling.value,
+        textPrimary: document.querySelector('#color-text-primary').nextElementSibling.value,
+        textSecondary: document.querySelector('#color-text-secondary').nextElementSibling.value,
+        border: document.querySelector('#color-border').nextElementSibling.value
     };
 
-    const data = {
+    return {
         typography: {
             fontSizes: {
-                base: `clamp(${inputs.fontBaseMin.value}px, ${inputs.fontBasePref.value}vw, ${inputs.fontBaseMax.value}px)`,
-                h1: `clamp(${inputs.fontH1Min.value}px, ${inputs.fontH1Pref.value}vw, ${inputs.fontH1Max.value}px)`,
-                h2: `clamp(${inputs.fontH2Min.value}px, ${inputs.fontH2Pref.value}vw, ${inputs.fontH2Max.value}px)`,
-                h3: `clamp(${inputs.fontH3Min.value}px, ${inputs.fontH3Pref.value}vw, ${inputs.fontH3Max.value}px)`
+                base: `clamp(${inputs.fontBaseMin.value}rem, ${inputs.fontBasePref.value}vw, ${inputs.fontBaseMax.value}rem)`,
+                h1: `clamp(${inputs.fontH1Min.value}rem, ${inputs.fontH1Pref.value}vw, ${inputs.fontH1Max.value}rem)`,
+                h2: `clamp(${inputs.fontH2Min.value}rem, ${inputs.fontH2Pref.value}vw, ${inputs.fontH2Max.value}rem)`,
+                h3: `clamp(${inputs.fontH3Min.value}rem, ${inputs.fontH3Pref.value}vw, ${inputs.fontH3Max.value}rem)`
             },
             fontWeights: {
                 light: inputs.fontWeightLight.value,
@@ -283,17 +253,17 @@ function generateJSON() {
             lineHeight: inputs.lineHeight.value
         },
         spacing: {
-            gapXs: inputs.gapXs.value + 'px',
-            gapSmall: inputs.gapSmall.value + 'px',
-            gapMedium: inputs.gapMedium.value + 'px',
-            gapLarge: inputs.gapLarge.value + 'px',
-            gapXl: inputs.gapXl.value + 'px',
-            sectionSpacing: inputs.sectionSpacing.value + 'px',
-            containerPadding: inputs.containerPadding.value + 'px'
+            gapXs: inputs.gapXs.value + 'rem',
+            gapSmall: inputs.gapSmall.value + 'rem',
+            gapMedium: inputs.gapMedium.value + 'rem',
+            gapLarge: inputs.gapLarge.value + 'rem',
+            gapXl: inputs.gapXl.value + 'rem',
+            sectionSpacing: inputs.sectionSpacing.value + 'rem',
+            containerPadding: inputs.containerPadding.value + 'rem'
         },
         grid: {
             columns: parseInt(inputs.gridColumns.value),
-            gap: inputs.gridGap.value + 'px',
+            gap: inputs.gridGap.value + 'rem',
             containerMaxWidth: inputs.containerWidth.value + 'px'
         },
         borders: {
@@ -348,22 +318,22 @@ function generateJSON() {
         },
         buttons: {
             heights: {
-                small: inputs.btnHeightSm.value + 'px',
-                medium: inputs.btnHeightMd.value + 'px',
-                large: inputs.btnHeightLg.value + 'px'
+                small: inputs.btnHeightSm.value + 'rem',
+                medium: inputs.btnHeightMd.value + 'rem',
+                large: inputs.btnHeightLg.value + 'rem'
             },
-            paddingX: inputs.btnPaddingX.value + 'px'
+            paddingX: inputs.btnPaddingX.value + 'rem'
         },
         forms: {
-            inputHeight: inputs.inputHeight.value + 'px',
-            inputPadding: inputs.inputPadding.value + 'px',
+            inputHeight: inputs.inputHeight.value + 'rem',
+            inputPadding: inputs.inputPadding.value + 'rem',
             focusRingWidth: inputs.focusRingWidth.value + 'px'
         },
         icons: {
-            small: inputs.iconSm.value + 'px',
-            medium: inputs.iconMd.value + 'px',
-            large: inputs.iconLg.value + 'px',
-            xl: inputs.iconXl.value + 'px'
+            small: inputs.iconSm.value + 'rem',
+            medium: inputs.iconMd.value + 'rem',
+            large: inputs.iconLg.value + 'rem',
+            xl: inputs.iconXl.value + 'rem'
         },
         colors: {
             primary: colors,
@@ -371,45 +341,38 @@ function generateJSON() {
             neutral: neutralColors
         }
     };
-
-    return data;
 }
 
-// Generate CSS variables
+// Generate CSS
 function generateCSS() {
     const data = generateJSON();
     let css = ':root {\n';
     
-    // Typography
-    css += '  /* Typography - Fluid Font Sizes with clamp() */\n';
+    css += '  /* Typography - Fluid Font Sizes (REM) */\n';
     css += `  --font-base: ${data.typography.fontSizes.base};\n`;
     css += `  --font-h1: ${data.typography.fontSizes.h1};\n`;
     css += `  --font-h2: ${data.typography.fontSizes.h2};\n`;
     css += `  --font-h3: ${data.typography.fontSizes.h3};\n`;
     css += `  --line-height: ${data.typography.lineHeight};\n\n`;
     
-    // Font Weights
     css += '  /* Font Weights */\n';
     Object.entries(data.typography.fontWeights).forEach(([key, value]) => {
         css += `  --font-weight-${key}: ${value};\n`;
     });
     css += '\n';
     
-    // Spacing
-    css += '  /* Spacing */\n';
+    css += '  /* Spacing (REM) */\n';
     Object.entries(data.spacing).forEach(([key, value]) => {
         const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
         css += `  --${cssKey}: ${value};\n`;
     });
     css += '\n';
     
-    // Grid
     css += '  /* Grid */\n';
     css += `  --grid-columns: ${data.grid.columns};\n`;
     css += `  --grid-gap: ${data.grid.gap};\n`;
     css += `  --container-max-width: ${data.grid.containerMaxWidth};\n\n`;
     
-    // Borders
     css += '  /* Border Widths */\n';
     Object.entries(data.borders.widths).forEach(([key, value]) => {
         css += `  --border-${key}: ${value};\n`;
@@ -420,21 +383,18 @@ function generateCSS() {
     });
     css += '\n';
     
-    // Shadows
     css += '  /* Shadows */\n';
     Object.entries(data.shadows).forEach(([key, value]) => {
         css += `  --shadow-${key}: ${value};\n`;
     });
     css += '\n';
     
-    // Transitions
     css += '  /* Transitions */\n';
     Object.entries(data.transitions.duration).forEach(([key, value]) => {
         css += `  --duration-${key}: ${value};\n`;
     });
     css += `  --easing: ${data.transitions.easing};\n\n`;
     
-    // Breakpoints
     css += '  /* Breakpoints */\n';
     Object.entries(data.breakpoints).forEach(([key, value]) => {
         const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
@@ -442,56 +402,48 @@ function generateCSS() {
     });
     css += '\n';
     
-    // Z-Index
-    css += '  /* Z-Index Layers */\n';
+    css += '  /* Z-Index */\n';
     Object.entries(data.zIndex).forEach(([key, value]) => {
         const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
         css += `  --z-${cssKey}: ${value};\n`;
     });
     css += '\n';
     
-    // Opacity
     css += '  /* Opacity */\n';
     Object.entries(data.opacity).forEach(([key, value]) => {
         css += `  --opacity-${key}: ${value};\n`;
     });
     css += '\n';
     
-    // Buttons
-    css += '  /* Buttons */\n';
+    css += '  /* Buttons (REM) */\n';
     Object.entries(data.buttons.heights).forEach(([key, value]) => {
         css += `  --btn-height-${key}: ${value};\n`;
     });
     css += `  --btn-padding-x: ${data.buttons.paddingX};\n\n`;
     
-    // Forms
-    css += '  /* Forms */\n';
+    css += '  /* Forms (REM) */\n';
     css += `  --input-height: ${data.forms.inputHeight};\n`;
     css += `  --input-padding: ${data.forms.inputPadding};\n`;
     css += `  --focus-ring-width: ${data.forms.focusRingWidth};\n\n`;
     
-    // Icons
-    css += '  /* Icons */\n';
+    css += '  /* Icons (REM) */\n';
     Object.entries(data.icons).forEach(([key, value]) => {
         css += `  --icon-${key}: ${value};\n`;
     });
     css += '\n';
     
-    // Primary Colors
     css += '  /* Primary Colors */\n';
     Object.entries(data.colors.primary).forEach(([key, value]) => {
         css += `  --color-${key}: ${value};\n`;
     });
     css += '\n';
     
-    // Status Colors
     css += '  /* Status Colors */\n';
     Object.entries(data.colors.status).forEach(([key, value]) => {
         css += `  --color-${key}: ${value};\n`;
     });
     css += '\n';
     
-    // Neutral Colors
     css += '  /* Neutral Colors */\n';
     Object.entries(data.colors.neutral).forEach(([key, value]) => {
         const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
@@ -526,7 +478,7 @@ document.getElementById('download-css').addEventListener('click', () => {
     URL.revokeObjectURL(url);
 });
 
-// Copy JSON to clipboard
+// Copy JSON
 document.getElementById('copy-json').addEventListener('click', () => {
     const data = generateJSON();
     navigator.clipboard.writeText(JSON.stringify(data, null, 2)).then(() => {
@@ -539,12 +491,12 @@ document.getElementById('copy-json').addEventListener('click', () => {
     });
 });
 
-// Reset to defaults
+// Reset
 document.getElementById('reset').addEventListener('click', () => {
     if (confirm('Biztosan visszaállítod az alapértelmezett értékeket?')) {
         location.reload();
     }
 });
 
-// Initial preview update
+// Initial update
 updatePreview();
