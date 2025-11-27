@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bricks Builder Variables Generator Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧱 Bricks Builder Variables Generator Pro</h1>
+            <p>Komplett CSS változók generátor Bricks Builderhez</p>
+        </header>
+
+        <div class="content">
+            <!-- Typography with Clamp -->
+            <section class="section">
+                <h2>📝 Typography (Fluid Font Sizes)</h2>
+                <div class="clamp-group">
+                    <h3>Base Font Size</h3>
+                    <div class="clamp-inputs">
+                        <div class="input-group">
+                            <label>Min (px):</label>
+                            <input type="number" id="font-base-min" value="14" min="8">
+                        </div>
+                        <div class="input-group">
+                            <label>Preferred (vw):</label>
+                            <input type="number" id="font-base-pref" value="1.5" step="0.1" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label>Max (px):</label>
+                            <input type="number" id="font-base-max" value="18" min="8">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clamp-group">
+                    <h3>H1 Font Size</h3>
+                    <div class="clamp-inputs">
+                        <div class="input-group">
+                            <label>Min (px):</label>
+                            <input type="number" id="font-h1-min" value="32" min="8">
+                        </div>
+                        <div class="input-group">
+                            <label>Preferred (vw):</label>
+                            <input type="number" id="font-h1-pref" value="4" step="0.1" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label>Max (px):</label>
+                            <input type="number" id="font-h1-max" value="64" min="8">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clamp-group">
+                    <h3>H2 Font Size</h3>
+                    <div class="clamp-inputs">
+                        <div class="input-group">
+                            <label>Min (px):</label>
+                            <input type="number" id="font-h2-min" value="24" min="8">
+                        </div>
+                        <div class="input-group">
+                            <label>Preferred (vw):</label>
+                            <input type="number" id="font-h2-pref" value="3" step="0.1" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label>Max (px):</label>
+                            <input type="number" id="font-h2-max" value="48" min="8">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clamp-group">
+                    <h3>H3 Font Size</h3>
+                    <div class="clamp-inputs">
+                        <div class="input-group">
+                            <label>Min (px):</label>
+                            <input type="number" id="font-h3-min" value="18" min="8">
+                        </div>
+                        <div class="input-group">
+                            <label>Preferred (vw):</label>
+                            <input type="number" id="font-h3-pref" value="2" step="0.1" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label>Max (px):</label>
+                            <input type="number" id="font-h3-max" value="32" min="8">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Line Height:</label>
+                    <input type="number" id="line-height" value="1.6" step="0.1" min="1">
+                </div>
+            </section>
+
+            <!-- Font Weights -->
+            <section class="section">
+                <h2>💪 Font Weights</h2>
+                <div class="input-group">
+                    <label>Light:</label>
+                    <input type="number" id="font-weight-light" value="300" min="100" max="900" step="100">
+                </div>
+                <div class="input-group">
+                    <label>Regular:</label>
+                    <input type="number" id="font-weight-regular" value="400" min="100" max="900" step="100">
+                </div>
+                <div class="input-group">
+                    <label>Medium:</label>
+                    <input type="number" id="font-weight-medium" value="500" min="100" max="900" step="100">
+                </div>
+                <div class="input-group">
+                    <label>Semibold:</label>
+                    <input type="number" id="font-weight-semibold" value="600" min="100" max="900" step="100">
+                </div>
+                <div class="input-group">
+                    <label>Bold:</label>
+                    <input type="number" id="font-weight-bold" value="700" min="100" max="900" step="100">
+                </div>
+            </section>
+
+            <!-- Spacing Section -->
+            <section class="section">
+                <h2>📏 Spacing (Gap & Margins)</h2>
+                <div class="input-group">
+                    <label>Gap XSmall (px):</label>
+                    <input type="number" id="gap-xs" value="4" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Gap Small (px):</label>
+                    <input type="number" id="gap-small" value="8" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Gap Medium (px):</label>
+                    <input type="number" id="gap-medium" value="16" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Gap Large (px):</label>
+                    <input type="number" id="gap-large" value="32" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Gap XLarge (px):</label>
+                    <input type="number" id="gap-xl" value="48" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Section Spacing (px):</label>
+                    <input type="number" id="section-spacing" value="80" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Container Padding (px):</label>
+                    <input type="number" id="container-padding" value="20" min="0">
+                </div>
+            </section>
+
+            <!-- Grid Section -->
+            <section class="section">
+                <h2>🎯 Grid Settings</h2>
+                <div class="input-group">
+                    <label>Grid Columns:</label>
+                    <input type="number" id="grid-columns" value="12" min="1" max="24">
+                </div>
+                <div class="input-group">
+                    <label>Grid Gap (px):</label>
+                    <input type="number" id="grid-gap" value="20" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Container Max Width (px):</label>
+                    <input type="number" id="container-width" value="1200" min="0">
+                </div>
+            </section>
+
+            <!-- Border & Radius -->
+            <section class="section">
+                <h2>🔲 Border & Radius</h2>
+                <div class="input-group">
+                    <label>Border Thin (px):</label>
+                    <input type="number" id="border-thin" value="1" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Border Medium (px):</label>
+                    <input type="number" id="border-medium" value="2" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Border Thick (px):</label>
+                    <input type="number" id="border-thick" value="4" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Radius None (px):</label>
+                    <input type="number" id="radius-none" value="0" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Radius Small (px):</label>
+                    <input type="number" id="radius-small" value="4" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Radius Medium (px):</label>
+                    <input type="number" id="radius-medium" value="8" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Radius Large (px):</label>
+                    <input type="number" id="radius-large" value="16" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Radius Full (px):</label>
+                    <input type="number" id="radius-full" value="9999" min="0">
+                </div>
+            </section>
+
+            <!-- Shadows -->
+            <section class="section">
+                <h2>✨ Shadows</h2>
+                <div class="input-group">
+                    <label>Shadow Small:</label>
+                    <input type="text" id="shadow-small" value="0 1px 3px rgba(0,0,0,0.12)" class="text-input">
+                </div>
+                <div class="input-group">
+                    <label>Shadow Medium:</label>
+                    <input type="text" id="shadow-medium" value="0 4px 6px rgba(0,0,0,0.1)" class="text-input">
+                </div>
+                <div class="input-group">
+                    <label>Shadow Large:</label>
+                    <input type="text" id="shadow-large" value="0 10px 25px rgba(0,0,0,0.15)" class="text-input">
+                </div>
+                <div class="input-group">
+                    <label>Shadow XLarge:</label>
+                    <input type="text" id="shadow-xl" value="0 20px 40px rgba(0,0,0,0.2)" class="text-input">
+                </div>
+            </section>
+
+            <!-- Transitions -->
+            <section class="section">
+                <h2>⚡ Transitions & Animations</h2>
+                <div class="input-group">
+                    <label>Duration Fast (ms):</label>
+                    <input type="number" id="duration-fast" value="150" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Duration Normal (ms):</label>
+                    <input type="number" id="duration-normal" value="300" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Duration Slow (ms):</label>
+                    <input type="number" id="duration-slow" value="500" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Easing:</label>
+                    <select id="easing" class="select-input">
+                        <option value="ease">ease</option>
+                        <option value="ease-in">ease-in</option>
+                        <option value="ease-out">ease-out</option>
+                        <option value="ease-in-out" selected>ease-in-out</option>
+                        <option value="linear">linear</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Breakpoints -->
+            <section class="section">
+                <h2>📱 Breakpoints</h2>
+                <div class="input-group">
+                    <label>Mobile (px):</label>
+                    <input type="number" id="bp-mobile" value="640" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Tablet (px):</label>
+                    <input type="number" id="bp-tablet" value="768" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Desktop (px):</label>
+                    <input type="number" id="bp-desktop" value="1024" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Wide (px):</label>
+                    <input type="number" id="bp-wide" value="1280" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Ultra Wide (px):</label>
+                    <input type="number" id="bp-ultra" value="1536" min="0">
+                </div>
+            </section>
+
+            <!-- Z-Index -->
+            <section class="section">
+                <h2>🔢 Z-Index Layers</h2>
+                <div class="input-group">
+                    <label>Dropdown:</label>
+                    <input type="number" id="z-dropdown" value="1000" min="0" step="10">
+                </div>
+                <div class="input-group">
+                    <label>Sticky:</label>
+                    <input type="number" id="z-sticky" value="1020" min="0" step="10">
+                </div>
+                <div class="input-group">
+                    <label>Fixed:</label>
+                    <input type="number" id="z-fixed" value="1030" min="0" step="10">
+                </div>
+                <div class="input-group">
+                    <label>Modal Backdrop:</label>
+                    <input type="number" id="z-backdrop" value="1040" min="0" step="10">
+                </div>
+                <div class="input-group">
+                    <label>Modal:</label>
+                    <input type="number" id="z-modal" value="1050" min="0" step="10">
+                </div>
+                <div class="input-group">
+                    <label>Popover:</label>
+                    <input type="number" id="z-popover" value="1060" min="0" step="10">
+                </div>
+                <div class="input-group">
+                    <label>Tooltip:</label>
+                    <input type="number" id="z-tooltip" value="1070" min="0" step="10">
+                </div>
+            </section>
+
+            <!-- Opacity -->
+            <section class="section">
+                <h2>💫 Opacity Levels</h2>
+                <div class="input-group">
+                    <label>Disabled:</label>
+                    <input type="number" id="opacity-disabled" value="0.5" min="0" max="1" step="0.05">
+                </div>
+                <div class="input-group">
+                    <label>Subtle:</label>
+                    <input type="number" id="opacity-subtle" value="0.6" min="0" max="1" step="0.05">
+                </div>
+                <div class="input-group">
+                    <label>Hover:</label>
+                    <input type="number" id="opacity-hover" value="0.8" min="0" max="1" step="0.05">
+                </div>
+                <div class="input-group">
+                    <label>Active:</label>
+                    <input type="number" id="opacity-active" value="0.9" min="0" max="1" step="0.05">
+                </div>
+            </section>
+
+            <!-- Button & Form -->
+            <section class="section">
+                <h2>🔘 Button & Form Styles</h2>
+                <div class="input-group">
+                    <label>Button Height Small (px):</label>
+                    <input type="number" id="btn-height-sm" value="32" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Button Height Medium (px):</label>
+                    <input type="number" id="btn-height-md" value="40" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Button Height Large (px):</label>
+                    <input type="number" id="btn-height-lg" value="48" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Button Padding X (px):</label>
+                    <input type="number" id="btn-padding-x" value="16" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Input Height (px):</label>
+                    <input type="number" id="input-height" value="40" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Input Padding (px):</label>
+                    <input type="number" id="input-padding" value="12" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Focus Ring Width (px):</label>
+                    <input type="number" id="focus-ring-width" value="3" min="0">
+                </div>
+            </section>
+
+            <!-- Icon Sizes -->
+            <section class="section">
+                <h2>🎯 Icon Sizes</h2>
+                <div class="input-group">
+                    <label>Icon Small (px):</label>
+                    <input type="number" id="icon-sm" value="16" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Icon Medium (px):</label>
+                    <input type="number" id="icon-md" value="24" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Icon Large (px):</label>
+                    <input type="number" id="icon-lg" value="32" min="0">
+                </div>
+                <div class="input-group">
+                    <label>Icon XLarge (px):</label>
+                    <input type="number" id="icon-xl" value="48" min="0">
+                </div>
+            </section>
+
+            <!-- Primary Colors -->
+            <section class="section">
+                <h2>🎨 Primary Colors</h2>
+                <div id="colors-container">
+                    <div class="color-item" data-color-name="Primary">
+                        <label>Primary:</label>
+                        <input type="color" class="color-input" value="#3b82f6">
+                        <input type="text" class="color-hex" value="#3b82f6">
+                    </div>
+                    <div class="color-item" data-color-name="Secondary">
+                        <label>Secondary:</label>
+                        <input type="color" class="color-input" value="#8b5cf6">
+                        <input type="text" class="color-hex" value="#8b5cf6">
+                    </div>
+                    <div class="color-item" data-color-name="Accent">
+                        <label>Accent:</label>
+                        <input type="color" class="color-input" value="#10b981">
+                        <input type="text" class="color-hex" value="#10b981">
+                    </div>
+                </div>
+                <button id="add-color" class="btn-secondary">+ Új Szín Hozzáadása</button>
+            </section>
+
+            <!-- Status Colors -->
+            <section class="section">
+                <h2>🌈 Status Colors</h2>
+                <div class="color-item">
+                    <label>Success:</label>
+                    <input type="color" class="status-color-input" id="color-success" value="#10b981">
+                    <input type="text" class="status-color-hex" value="#10b981">
+                </div>
+                <div class="color-item">
+                    <label>Warning:</label>
+                    <input type="color" class="status-color-input" id="color-warning" value="#f59e0b">
+                    <input type="text" class="status-color-hex" value="#f59e0b">
+                </div>
+                <div class="color-item">
+                    <label>Error:</label>
+                    <input type="color" class="status-color-input" id="color-error" value="#ef4444">
+                    <input type="text" class="status-color-hex" value="#ef4444">
+                </div>
+                <div class="color-item">
+                    <label>Info:</label>
+                    <input type="color" class="status-color-input" id="color-info" value="#3b82f6">
+                    <input type="text" class="status-color-hex" value="#3b82f6">
+                </div>
+            </section>
+
+            <!-- Neutral Colors -->
+            <section class="section">
+                <h2>⚪ Neutral Colors</h2>
+                <div class="color-item">
+                    <label>Background Light:</label>
+                    <input type="color" class="neutral-color-input" id="color-bg-light" value="#ffffff">
+                    <input type="text" class="neutral-color-hex" value="#ffffff">
+                </div>
+                <div class="color-item">
+                    <label>Background Dark:</label>
+                    <input type="color" class="neutral-color-input" id="color-bg-dark" value="#1f2937">
+                    <input type="text" class="neutral-color-hex" value="#1f2937">
+                </div>
+                <div class="color-item">
+                    <label>Text Primary:</label>
+                    <input type="color" class="neutral-color-input" id="color-text-primary" value="#111827">
+                    <input type="text" class="neutral-color-hex" value="#111827">
+                </div>
+                <div class="color-item">
+                    <label>Text Secondary:</label>
+                    <input type="color" class="neutral-color-input" id="color-text-secondary" value="#6b7280">
+                    <input type="text" class="neutral-color-hex" value="#6b7280">
+                </div>
+                <div class="color-item">
+                    <label>Border Color:</label>
+                    <input type="color" class="neutral-color-input" id="color-border" value="#e5e7eb">
+                    <input type="text" class="neutral-color-hex" value="#e5e7eb">
+                </div>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="section preview-section">
+                <h2>👁️ Előnézet</h2>
+                <div id="preview" class="preview-box">
+                    <div class="preview-content">
+                        <h1>Heading 1 - Fluid Typography</h1>
+                        <h2>Heading 2 - Reszponzív Méret</h2>
+                        <h3>Heading 3 - Clamp() Function</h3>
+                        <p>Ez egy példa szöveg, amely bemutatja a beállított font méreteket és sorközöket. A szöveg automatikusan skálázódik a viewport méret alapján, köszönhetően a CSS clamp() függvénynek.</p>
+                        <div class="preview-grid">
+                            <div class="grid-item"></div>
+                            <div class="grid-item"></div>
+                            <div class="grid-item"></div>
+                        </div>
+                        <div class="preview-buttons">
+                            <button class="preview-btn">Button Example</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <div class="actions">
+                <button id="download-json" class="btn-primary">📥 JSON Letöltése</button>
+                <button id="download-css" class="btn-secondary">📄 CSS Letöltése</button>
+                <button id="copy-json" class="btn-secondary">📋 JSON Másolása</button>
+                <button id="reset" class="btn-danger">🔄 Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
